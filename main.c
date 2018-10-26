@@ -36,8 +36,9 @@ void dis()
  fp1 = fopen("Record.bat", "r");
  printf("\nid\tFName\tLName\tAddress\tSalary\t\t\tPhone no.\tdate of join\n\n");
  while (fread(&details, sizeof(details), 1, fp1))
- printf("  %d\t%s\t%s\t%s\t%d\t%lli\t%d-%d-%d\n",details.id,details.fname,details.lname,details.address,details.salary,details.phone,details.date.day,details.date.mon,details.date.year);
+ printf("  id: %d\n\tFirst name: %s\t\n\tLast name: %s\t\n\tAddress: %s\t\n\tSalary: %d\t\n\tPhone: %lli\t\n\tDate: %d-%d-%d\n\n\n",details.id,details.fname,details.lname,details.address,details.salary,details.phone,details.date.day,details.date.mon,details.date.year);
  fclose(fp1);
+ getche();
 }
 void search()
 {
