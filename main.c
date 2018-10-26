@@ -34,7 +34,6 @@ void dis()
 {
  FILE *fp1;
  fp1 = fopen("Record.bat", "r");
- printf("\nid\tFName\tLName\tAddress\tSalary\t\t\tPhone no.\tdate of join\n\n");
  while (fread(&details, sizeof(details), 1, fp1))
  printf("  id: %d\n\tFirst name: %s\t\n\tLast name: %s\t\n\tAddress: %s\t\n\tSalary: %d\t\n\tPhone: %lli\t\n\tDate: %d-%d-%d\n\n\n",details.id,details.fname,details.lname,details.address,details.salary,details.phone,details.date.day,details.date.mon,details.date.year);
  fclose(fp1);
@@ -51,10 +50,11 @@ void search()
     {
         if(details.id == id)
         {
-        printf("  %d\t%s\t%s\t%s\t%d\t%lli\t%d-%d-%d\n",details.id,details.fname,details.lname,details.address,details.salary,details.phone,details.date.day,details.date.mon,details.date.year);
+        printf("  id: %d\n\tFirst name: %s\t\n\tLast name: %s\t\n\tAddress: %s\t\n\tSalary: %d\t\n\tPhone: %lli\t\n\tDate: %d-%d-%d\n\n\n",details.id,details.fname,details.lname,details.address,details.salary,details.phone,details.date.day,details.date.mon,details.date.year);
         }
     }
     fclose(fp1);
+    getche();
 }
 void copy_dis()
 {
@@ -63,10 +63,10 @@ void copy_dis()
     scanf("%s",name);
     FILE *fp1;
     fp1 = fopen(name, "r");
-    printf("\nid\tFName\tLName\tAddress\tSalary\t\t\tPhone no.\tdate of join\n\n");
     while (fread(&details, sizeof(details), 1, fp1))
-    printf("  %d\t%s\t%s\t%s\t%d\t%lli\t%d-%d-%d\n",details.id,details.fname,details.lname,details.address,details.salary,details.phone,details.date.day,details.date.mon,details.date.year);
+    printf("  id: %d\n\tFirst name: %s\t\n\tLast name: %s\t\n\tAddress: %s\t\n\tSalary: %d\t\n\tPhone: %lli\t\n\tDate: %d-%d-%d\n\n\n",details.id,details.fname,details.lname,details.address,details.salary,details.phone,details.date.day,details.date.mon,details.date.year);
     fclose(fp1);
+    getche();
 }
 void copy()
 {
@@ -80,8 +80,10 @@ void copy()
     {
         fwrite(&details, sizeof(details), 1, fpt1);
     }
+    printf("copied successful");
     fclose(fpt);
     fclose(fpt1);
+    getche();
 }
 void delete()
 {
@@ -96,13 +98,16 @@ void delete()
         if(id!=details.id)
         {
             fwrite(&details, sizeof(details), 1, fpt1);
-            printf("delete successful");
+        }else{
+                printf("Delete successful");
+                break;
         }
     }
     fclose(fpt);
     fclose(fpt1);
     remove("Record.bat");
     rename("Esewa.bat","Record.bat");
+    getche();
 }
 int main()
 {
@@ -112,7 +117,7 @@ char a;
  {
   printf("\n\t---Select your choice---------\n");
   printf("\n\t1. INSERT\n\t2. DISPLAY\n\t3. SEARCH");
-  printf("\n\t4. DELETE\n\t5. copy\n\t6. Display copied file");
+  printf("\n\t4. DELETE\n\t5. COPY\n\t6. DISPLAY COPIED FILE");
   printf("\n\t7. EXIT");
   printf("\n\n------------------------------------------\n");
   printf("\nEnter your choice:");
@@ -121,11 +126,8 @@ char a;
   switch (c)
   {
   case 1:
-      do{
-       insert();
-       printf("do you want to insert new record");
-       a = toupper(getchar());
-      }while(a == 'Y');
+
+    insert();
    break;
   case 2:
    dis();
